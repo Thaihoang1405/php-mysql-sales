@@ -20,7 +20,8 @@ if ($shipperID <= 0) {
 $sql = "
     SELECT
         ShipperID,
-        ShipperName
+        ShipperName,
+        Phone
     FROM shippers
     WHERE ShipperID = ?
 ";
@@ -45,6 +46,7 @@ if (!$shipper) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $shipperName = trim($_POST['shipper_name'] ? '');
+    $phone = trim($_POST['phone'] ? '');
 
     if ($shipperName === '') {
 
