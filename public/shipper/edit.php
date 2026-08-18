@@ -45,8 +45,8 @@ if (!$shipper) {
  */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $shipperName = trim($_POST['shipper_name'] ? '');
-    $phone = trim($_POST['phone'] ? '');
+    $shipperName = trim($_POST['shipper_name'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
 
     if ($shipperName === '') {
 
@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             UPDATE shippers
             SET
                 ShipperName = ?
+                Phone = ?
             WHERE ShipperID = ?
         ";
 
@@ -66,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param(
             'si',
             $shipperName,
+            $phone,
             $shipperID
         );
 
@@ -107,6 +109,16 @@ require_once '/var/www/src/includes/navbar.php';
             <label class="form-label">
                 Mã đơn
             </label>
+            <textarea
+                class="form-control"
+                id="phone"
+                name="phone"
+                rows="3"
+            ><?= htmlspecialchars(
+                $_POST['phone']
+                ?? $category['Phone']
+                ?? ''
+            ) ?></textarea>
 
             <input
                 type="text"

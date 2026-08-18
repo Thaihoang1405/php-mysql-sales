@@ -9,6 +9,7 @@ $sql = "
         ShipperID,
         ShipperName,
         Phone
+
     FROM shippers
     ORDER BY ShipperID
 ";
@@ -69,7 +70,7 @@ require_once '/var/www/src/includes/navbar.php';
                             Sửa
                         </a>
 
- <form
+                        <form
     action="/shippers/delete.php"
     method="post"
     class="d-inline"
