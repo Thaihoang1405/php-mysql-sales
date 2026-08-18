@@ -20,5 +20,5 @@
 
 <div class="p-5 bg-primary text-white text-center">
     <h1>Hệ thống quản lý nhân viên giao hàng</h1>
-    <p>Phát triển ứng dụng Web mã nguồn mở</p>
+    <p>Vì một tương lai tươi sáng đang chờ chúng ta</p>
 </div>

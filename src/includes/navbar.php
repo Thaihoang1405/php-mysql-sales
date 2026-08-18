@@ -19,7 +19,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/categories/">
+                    <a class="nav-link" href="/shippers/">
                         Quản lí giao hàng
                     </a>
                 </li>
