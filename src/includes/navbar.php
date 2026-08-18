@@ -20,19 +20,19 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="/categories/">
-                        Danh mục
+                        Quản lí giao hàng
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        Sản phẩm
+                        Tên nhân viên
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        Đơn hàng
+                        Mã đơn
                     </a>
                 </li>
 

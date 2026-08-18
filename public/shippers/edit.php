@@ -1,0 +1,177 @@
+<?php
+
+$pageTitle = 'Sửa danh mục';
+
+require_once '/var/www/src/config/database.php';
+
+$error = '';
+
+$shipperID = isset($_GET['id'])
+    ? (int) $_GET['id']
+    : 0;
+
+if ($shipperID <= 0) {
+    die('Mã đơn không hợp lệ.');
+}
+
+/*
+ * Đọc dữ liệu hiện tại của danh mục
+ */
+$sql = "
+    SELECT
+        ShipperID,
+        ShipperName,
+        Description
+    FROM shippers
+    WHERE ShipperID = ?
+";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $shipperID);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$shipper = $result->fetch_assoc();
+
+$stmt->close();
+
+if (!$category) {
+    die('Không tìm thấy mã đơn.');
+}
+
+
+/*
+ * Xử lý khi người dùng gửi form
+ */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $shipperName = trim($_POST['shipper_name'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+
+    if ($shipperName === '') {
+
+        $error = 'Tên nhân viên không được để trống.';
+
+    } else {
+
+        $sql = "
+            UPDATE shippers
+            SET
+                ShipperName = ?,
+                Description = ?
+            WHERE ShipperID = ?
+        ";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param(
+            'ssi',
+            $shipperName,
+            $description,
+            $shipperID
+        );
+
+        if ($stmt->execute()) {
+
+            header('Location: /shippers/');
+            exit;
+
+        } else {
+
+            $error = 'Không thể cập nhật danh mục.';
+        }
+
+        $stmt->close();
+    }
+}
+
+require_once '/var/www/src/includes/header.php';
+require_once '/var/www/src/includes/navbar.php';
+
+?>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Sửa danh mục</h2>
+
+    <?php if ($error !== ''): ?>
+
+        <div class="alert alert-danger">
+            <?= htmlspecialchars($error) ?>
+        </div>
+
+    <?php endif; ?>
+
+    <form method="post">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Mã đơn
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                value="<?= $shipper['ShipperID'] ?>"
+                disabled
+            >
+
+        </div>
+
+        <div class="mb-3">
+
+            <label for="shipperName" class="form-label">
+                Tên nhân viên
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                id="shipperName"
+                name="shipper_name"
+                value="<?= htmlspecialchars(
+                    $_POST['shipper_name']
+                    ?? $shipper['ShipperName']
+                ) ?>"
+                required
+            >
+
+        </div>
+
+        <div class="mb-3">
+
+            <label for="description" class="form-label">
+                Mô tả
+            </label>
+
+            <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                rows="3"
+            ><?= htmlspecialchars(
+                $_POST['description']
+                ?? $shipper['Description']
+                ?? ''
+            ) ?></textarea>
+
+        </div>
+
+        <button type="submit" class="btn btn-warning">
+            Cập nhật
+        </button>
+
+        <a href="/shippers/" class="btn btn-secondary">
+            Hủy
+        </a>
+
+    </form>
+
+</div>
+
+<?php
+
+require_once '/var/www/src/includes/footer.php';
+
+$conn->close();
