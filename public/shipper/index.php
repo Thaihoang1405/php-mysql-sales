@@ -9,7 +9,6 @@ $sql = "
         ShipperID,
         ShipperName,
         Phone
-
     FROM shippers
     ORDER BY ShipperID
 ";
@@ -70,9 +69,25 @@ require_once '/var/www/src/includes/navbar.php';
                             Sửa
                         </a>
 
-                        <a href="#" class="btn btn-sm btn-danger">
-                            Xóa
-                        </a>
+ <form
+    action="/shippers/delete.php"
+    method="post"
+    class="d-inline"
+    onsubmit="return confirm('Bạn có chắc muốn xóa danh mục này?');"
+>
+    <input
+        type="hidden"
+        name="id"
+        value="<?= $shipper['ShipperID'] ?>"
+    >
+
+    <button
+        type="submit"
+        class="btn btn-sm btn-danger"
+    >
+        Xóa
+    </button>
+</form>
 
                     </td>
 
