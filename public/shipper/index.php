@@ -8,7 +8,8 @@ $sql = "
     SELECT
         ShipperID,
         ShipperName,
-        Description
+        Phone
+
     FROM shippers
     ORDER BY ShipperID
 ";
@@ -38,10 +39,10 @@ require_once '/var/www/src/includes/navbar.php';
 
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th>Mã nhân viên</th>
                     <th>Tên nhân viên</th>
-                    <th>Công việc</th>
-                    <th>Đơn giao</th>
+                    <th>số điện thoại</th>
+                    <th>Chỉnh sửa</th>
                 </tr>
             </thead>
 
@@ -60,7 +61,7 @@ require_once '/var/www/src/includes/navbar.php';
                     </td>
 
                     <td>
-                        <?= htmlspecialchars($shipper['Description'] ?? '') ?>
+                        <?= htmlspecialchars($shipper['Phone'] ?? '') ?>
                     </td>
 
                     <td>

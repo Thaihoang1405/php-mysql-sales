@@ -1,6 +1,48 @@
 <?php
 
-$pageTitle = 'Thêm nhân viên';
+$pageTitle = 'Thêm danh mục';
+require_once '/var/www/src/config/database.php';
+
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $shipperName = trim($_POST['shipper_name'] ?? '');
+
+
+    if ($shipperName === '') {
+
+        $error = 'Tên danh mục không được để trống.';
+
+    } else {
+
+        $sql = "
+    INSERT INTO shippers
+        (ShipperName)
+    VALUES
+        (?)
+";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    's',
+    $shipperName
+);
+
+if ($stmt->execute()) {
+
+    header('Location: /shippers/');
+    exit;
+
+} else {
+
+    $error = 'Không thể thêm danh mục.';
+}
+
+$stmt->close();
+
+    }
+}
 
 require_once '/var/www/src/includes/header.php';
 require_once '/var/www/src/includes/navbar.php';
@@ -9,7 +51,7 @@ require_once '/var/www/src/includes/navbar.php';
 
 <div class="container mt-4">
 
-    <h2 class="mb-4">Thêm nhân viên</h2>
+    <h2 class="mb-4">Thêm danh mục</h2>
     <?php if ($error !== ''): ?>
 
     <div class="alert alert-danger">
@@ -33,25 +75,26 @@ require_once '/var/www/src/includes/navbar.php';
                 required
             >
         </div>
-
         <div class="mb-3">
-            <label for="description" class="form-label">
+            <label for="Phone" class="form-label">
                 Mô tả
             </label>
 
             <textarea
                 class="form-control"
-                id="description"
-                name="description"
+                id="Phone"
+                name="Phone"
                 rows="3"
+                <?= htmlspecialchars($_POST['Phone'] ?? '') ?>
             ></textarea>
         </div>
+
 
         <button type="submit" class="btn btn-primary">
             Lưu
         </button>
 
-        <a href="/shipper/" class="btn btn-secondary">
+        <a href="/shippers/" class="btn btn-secondary">
             Hủy
         </a>
 
@@ -60,3 +103,5 @@ require_once '/var/www/src/includes/navbar.php';
 </div>
 
 <?php
+
+require_once '/var/www/src/includes/footer.php';

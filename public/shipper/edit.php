@@ -20,8 +20,7 @@ if ($shipperID <= 0) {
 $sql = "
     SELECT
         ShipperID,
-        ShipperName,
-        Description
+        ShipperName
     FROM shippers
     WHERE ShipperID = ?
 ";
@@ -35,7 +34,7 @@ $shipper = $result->fetch_assoc();
 
 $stmt->close();
 
-if (!$category) {
+if (!$shipper) {
     die('Không tìm thấy mã đơn.');
 }
 
@@ -45,8 +44,7 @@ if (!$category) {
  */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $shipperName = trim($_POST['shipper_name'] ?? '');
-    $description = trim($_POST['description'] ?? '');
+    $shipperName = trim($_POST['shipper_name'] ? '');
 
     if ($shipperName === '') {
 
@@ -57,17 +55,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "
             UPDATE shippers
             SET
-                ShipperName = ?,
-                Description = ?
+                ShipperName = ?
             WHERE ShipperID = ?
         ";
 
         $stmt = $conn->prepare($sql);
 
         $stmt->bind_param(
-            'ssi',
+            'si',
             $shipperName,
-            $description,
             $shipperID
         );
 
@@ -136,25 +132,6 @@ require_once '/var/www/src/includes/navbar.php';
                 ) ?>"
                 required
             >
-
-        </div>
-
-        <div class="mb-3">
-
-            <label for="description" class="form-label">
-                Mô tả
-            </label>
-
-            <textarea
-                class="form-control"
-                id="description"
-                name="description"
-                rows="3"
-            ><?= htmlspecialchars(
-                $_POST['description']
-                ?? $shipper['Description']
-                ?? ''
-            ) ?></textarea>
 
         </div>
 
