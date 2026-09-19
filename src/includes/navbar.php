@@ -19,8 +19,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/shippers/">
-                        Quản lí giao hàng
+                    <a class="nav-link" href="/products/">
+                        Sản Phẩm
                     </a>
                 </li>
 

@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "
             UPDATE shippers
             SET
-                ShipperName = ?
+                ShipperName = ?,
                 Phone = ?
             WHERE ShipperID = ?
         ";
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($sql);
 
         $stmt->bind_param(
-            'si',
+            'ssi',
             $shipperName,
             $phone,
             $shipperID
@@ -107,24 +107,16 @@ require_once '/var/www/src/includes/navbar.php';
         <div class="mb-3">
 
             <label class="form-label">
-                Mã đơn
+                Số điện thoại
             </label>
-            <textarea
-                class="form-control"
-                id="phone"
-                name="phone"
-                rows="3"
-            ><?= htmlspecialchars(
-                $_POST['phone']
-                ?? $category['Phone']
-                ?? ''
-            ) ?></textarea>
+            
 
             <input
                 type="text"
                 class="form-control"
-                value="<?= $shipper['ShipperID'] ?>"
-                disabled
+                id="phone"
+                name="phone"
+                value="<?= htmlspecialchars($_POST['phone'] ?? $shipper['Phone'] ?? '') ?>"
             >
 
         </div>

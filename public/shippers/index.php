@@ -9,7 +9,6 @@ $sql = "
         ShipperID,
         ShipperName,
         Phone
-
     FROM shippers
     ORDER BY ShipperID
 ";
@@ -27,7 +26,7 @@ require_once '/var/www/src/includes/navbar.php';
 
         <h2>Quản lý nhân viên</h2>
 
-        <a href="#" class="btn btn-primary">
+        <a href="create.php" class="btn btn-primary">
             Thêm nhân viên mới
         </a>
 
@@ -41,7 +40,7 @@ require_once '/var/www/src/includes/navbar.php';
                 <tr>
                     <th>Mã nhân viên</th>
                     <th>Tên nhân viên</th>
-                    <th>số điện thoại</th>
+                    <th>Số điện thoại</th>
                     <th>Chỉnh sửa</th>
                 </tr>
             </thead>
@@ -66,7 +65,7 @@ require_once '/var/www/src/includes/navbar.php';
 
                     <td>
 
-                        <a href="#" class="btn btn-sm btn-warning">
+                        <a href="/shippers/edit.php?id=<?= $shipper['ShipperID'] ?>" class="btn btn-sm btn-warning">
                             Sửa
                         </a>
 

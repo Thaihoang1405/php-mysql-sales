@@ -7,27 +7,20 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $shipperName = trim($_POST['shipper_name'] ?? '');
-
+    $phone = trim($_POST['Phone'] ?? ''); // Lấy giá trị Số điện thoại từ Form
 
     if ($shipperName === '') {
-
-        $error = 'Tên danh mục không được để trống.';
-
+        $error = 'Tên nhân viên không được để trống.';
     } else {
-
+        // Thêm cột Phone vào câu lệnh INSERT
         $sql = "
-    INSERT INTO shippers
-        (ShipperName)
-    VALUES
-        (?)
-";
+            INSERT INTO shippers (ShipperName, Phone)
+            VALUES (?, ?)
+        ";
 
-$stmt = $conn->prepare($sql);
-
-$stmt->bind_param(
-    's',
-    $shipperName
-);
+        $stmt = $conn->prepare($sql);
+        // Chuyển thành 'ss' (2 tham số kiểu chuỗi string)
+        $stmt->bind_param('ss', $shipperName, $phone);
 
 if ($stmt->execute()) {
 
@@ -77,7 +70,7 @@ require_once '/var/www/src/includes/navbar.php';
         </div>
         <div class="mb-3">
             <label for="Phone" class="form-label">
-                Mô tả
+                Số điện thoại
             </label>
 
             <textarea
@@ -85,8 +78,7 @@ require_once '/var/www/src/includes/navbar.php';
                 id="Phone"
                 name="Phone"
                 rows="3"
-                <?= htmlspecialchars($_POST['Phone'] ?? '') ?>
-            ></textarea>
+                ><?= htmlspecialchars($_POST['Phone'] ?? '') ?></textarea>
         </div>
 
 
