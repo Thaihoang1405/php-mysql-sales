@@ -9,9 +9,9 @@ VALUES
 INSERT INTO suppliers
     (SupplierName, ContactName, Address, City, PostalCode, Country, Phone)
 VALUES
-    ('Công ty Công nghệ ABC', 'Nguyễn Văn An',
+    ('Quần áo Thể Thao ABC', 'Nguyễn Văn An',
      '01 Nguyễn Huệ', 'TP. Hồ Chí Minh', '700000', 'Việt Nam', '0901234567'),
-    ('Công ty Thiết bị XYZ', 'Trần Minh Bình',
+    ('Phụ Kiện & thiết bị thể thao ABC', 'Trần Minh Bình',
      '25 Lê Lợi', 'Đà Nẵng', '550000', 'Việt Nam', '0912345678');
 
 INSERT INTO customers

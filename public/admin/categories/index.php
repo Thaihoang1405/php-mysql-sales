@@ -1,22 +1,22 @@
 <?php
 
-$pageTitle = 'Quản lý nhân viên giao hàng';
+$pageTitle = 'Quản lý danh mục';
 
 require_once '/var/www/src/config/database.php';
 
 $sql = "
     SELECT
-        ShipperID,
-        ShipperName,
-        Phone
-    FROM shippers
-    ORDER BY ShipperID
+        CategoryID,
+        CategoryName,
+        Description
+    FROM categories
+    ORDER BY CategoryID
 ";
 
 $result = $conn->query($sql);
 
-require_once '/var/www/src/includes/header.php';
-require_once '/var/www/src/includes/navbar.php';
+require_once '/var/www/src/includes/admin/header.php';
+require_once '/var/www/src/includes/admin/navbar.php';
 
 ?>
 
@@ -24,10 +24,10 @@ require_once '/var/www/src/includes/navbar.php';
 
     <div class="d-flex justify-content-between align-items-center mb-3">
 
-        <h2>Quản lý nhân viên</h2>
+        <h2>Quản lý danh mục</h2>
 
-        <a href="create.php" class="btn btn-primary">
-            Thêm nhân viên mới
+        <a href="/admin/categories/create.php" class="btn btn-primary">
+            Thêm danh mục
         </a>
 
     </div>
@@ -38,39 +38,39 @@ require_once '/var/www/src/includes/navbar.php';
 
             <thead class="table-dark">
                 <tr>
-                    <th>Mã nhân viên</th>
-                    <th>Tên nhân viên</th>
-                    <th>Số điện thoại</th>
-                    <th>Chỉnh sửa</th>
+                    <th>ID</th>
+                    <th>Tên danh mục</th>
+                    <th>Mô tả</th>
+                    <th>Thao tác</th>
                 </tr>
             </thead>
 
             <tbody>
 
-            <?php while ($shipper = $result->fetch_assoc()): ?>
+            <?php while ($category = $result->fetch_assoc()): ?>
 
                 <tr>
 
                     <td>
-                        <?= $shipper['ShipperID'] ?>
+                        <?= $category['CategoryID'] ?>
                     </td>
 
                     <td>
-                        <?= htmlspecialchars($shipper['ShipperName']) ?>
+                        <?= htmlspecialchars($category['CategoryName']) ?>
                     </td>
 
                     <td>
-                        <?= htmlspecialchars($shipper['Phone'] ?? '') ?>
+                        <?= htmlspecialchars($category['Description'] ?? '') ?>
                     </td>
 
                     <td>
 
-                        <a href="/shippers/edit.php?id=<?= $shipper['ShipperID'] ?>" class="btn btn-sm btn-warning">
+                        <a href="/admin/categories/edit.php?id=<?= $category['CategoryID'] ?>
+" class="btn btn-sm btn-warning">
                             Sửa
                         </a>
-
-                        <form
-    action="/shippers/delete.php"
+<form
+    action="/admin/categories/delete.php"
     method="post"
     class="d-inline"
     onsubmit="return confirm('Bạn có chắc muốn xóa danh mục này?');"
@@ -78,7 +78,7 @@ require_once '/var/www/src/includes/navbar.php';
     <input
         type="hidden"
         name="id"
-        value="<?= $shipper['ShipperID'] ?>"
+        value="<?= $category['CategoryID'] ?>"
     >
 
     <button
@@ -105,6 +105,6 @@ require_once '/var/www/src/includes/navbar.php';
 
 <?php
 
-require_once '/var/www/src/includes/footer.php';
+require_once '/var/www/src/includes/admin/footer.php';
 
 $conn->close();

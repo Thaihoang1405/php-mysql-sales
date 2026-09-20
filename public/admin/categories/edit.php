@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle = 'Sửa danh mục';
+$pageTitle = 'Sửa mặc hàng';
 
 require_once '/var/www/src/config/database.php';
 
@@ -11,7 +11,7 @@ $categoryID = isset($_GET['id'])
     : 0;
 
 if ($categoryID <= 0) {
-    die('Mã danh mục không hợp lệ.');
+    die('Mã mặc hàng không hợp lệ.');
 }
 
 /*
@@ -36,7 +36,7 @@ $category = $result->fetch_assoc();
 $stmt->close();
 
 if (!$category) {
-    die('Không tìm thấy danh mục.');
+    die('Không tìm thấy mặc hàng.');
 }
 
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($categoryName === '') {
 
-        $error = 'Tên danh mục không được để trống.';
+        $error = 'Tên mặc hàng không được để trống.';
 
     } else {
 
@@ -73,26 +73,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
 
-            header('Location: /categories/');
+            header('Location: /admin/categories/');
             exit;
 
         } else {
 
-            $error = 'Không thể cập nhật danh mục.';
+            $error = 'Không thể cập nhật mặc hàng.';
         }
 
         $stmt->close();
     }
 }
 
-require_once '/var/www/src/includes/header.php';
+require_once '/var/www/src/includes/admin/header.php';
 require_once '/var/www/src/includes/navbar.php';
 
 ?>
 
 <div class="container mt-4">
 
-    <h2 class="mb-4">Sửa danh mục</h2>
+    <h2 class="mb-4">Sửa mặc hàng</h2>
 
     <?php if ($error !== ''): ?>
 
@@ -107,7 +107,7 @@ require_once '/var/www/src/includes/navbar.php';
         <div class="mb-3">
 
             <label class="form-label">
-                Mã danh mục
+                Mã mặc hàng
             </label>
 
             <input
@@ -122,7 +122,7 @@ require_once '/var/www/src/includes/navbar.php';
         <div class="mb-3">
 
             <label for="categoryName" class="form-label">
-                Tên danh mục
+                Tên mặc hàng
             </label>
 
             <input
@@ -162,7 +162,7 @@ require_once '/var/www/src/includes/navbar.php';
             Cập nhật
         </button>
 
-        <a href="/categories/" class="btn btn-secondary">
+        <a href="/admin/categories/" class="btn btn-secondary">
             Hủy
         </a>
 

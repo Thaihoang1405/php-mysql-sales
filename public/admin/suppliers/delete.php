@@ -3,31 +3,31 @@
 require_once '/var/www/src/config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /categories/');
+    header('Location: /suppliers/');
     exit;
 }
 
-$categoryID = isset($_POST['id'])
+$supplierID = isset($_POST['id'])
     ? (int) $_POST['id']
     : 0;
 
-if ($categoryID <= 0) {
-    header('Location: /categories/');
+if ($supplierID <= 0) {
+    header('Location: /suppliers/');
     exit;
 }
 
 $sql = "
-    DELETE FROM categories
-    WHERE CategoryID = ?
+    DELETE FROM suppliers
+    WHERE SupplierID = ?
 ";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('i', $categoryID);
+$stmt->bind_param('i', $supplierID);
 
 $stmt->execute();
 
 $stmt->close();
 $conn->close();
 
-header('Location: /categories/');
+header('Location: /suppliers/');
 exit;

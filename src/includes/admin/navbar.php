@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Sales Management</a>
+        <a class="navbar-brand" href="/admin/">Sales Management</a>
 
         <button
             class="navbar-toggler"
@@ -19,20 +19,32 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/products/">
+                    <a class="nav-link" href="/admin/products/">
                         Sản Phẩm
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Tên nhân viên
+                    <a class="nav-link" href="/admin/employees/">
+                        Nhân viên
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Mã đơn
+                    <a class="nav-link" href="/admin/shippers/">
+                        Shippers
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/suppliers/">
+                        Nhà cung cấp
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/categories/">
+                        Danh mục
                     </a>
                 </li>
 

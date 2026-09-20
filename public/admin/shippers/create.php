@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($stmt->execute()) {
 
-    header('Location: /shippers/');
+    header('Location: /admin/shippers/');
     exit;
 
 } else {
@@ -37,7 +37,7 @@ $stmt->close();
     }
 }
 
-require_once '/var/www/src/includes/header.php';
+require_once '/var/www/src/includes/admin/header.php';
 require_once '/var/www/src/includes/navbar.php';
 
 ?>
@@ -86,7 +86,7 @@ require_once '/var/www/src/includes/navbar.php';
             Lưu
         </button>
 
-        <a href="/shippers/" class="btn btn-secondary">
+        <a href="/admin/shippers/" class="btn btn-secondary">
             Hủy
         </a>
 

@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle = 'Thêm danh mục';
+$pageTitle = 'Thêm mặc hàng';
 require_once '/var/www/src/config/database.php';
 
 $error = '';
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($categoryName === '') {
 
-        $error = 'Tên danh mục không được để trống.';
+        $error = 'Tên mặc hàng không được để trống.';
 
     } else {
 
@@ -32,12 +32,12 @@ $stmt->bind_param(
 
 if ($stmt->execute()) {
 
-    header('Location: /categories/');
+    header('Location: /admin/categories/');
     exit;
 
 } else {
 
-    $error = 'Không thể thêm danh mục.';
+    $error = 'Không thể thêm mặc hàng.';
 }
 
 $stmt->close();
@@ -45,14 +45,14 @@ $stmt->close();
     }
 }
 
-require_once '/var/www/src/includes/header.php';
+require_once '/var/www/src/includes/admin/header.php';
 require_once '/var/www/src/includes/navbar.php';
 
 ?>
 
 <div class="container mt-4">
 
-    <h2 class="mb-4">Thêm danh mục</h2>
+    <h2 class="mb-4">Thêm mặc hàng</h2>
 <?php if ($error !== ''): ?>
 
     <div class="alert alert-danger">
@@ -64,7 +64,7 @@ require_once '/var/www/src/includes/navbar.php';
 
         <div class="mb-3">
             <label for="categoryName" class="form-label">
-                Tên danh mục
+                Tên mặc hàng
             </label>
 
             <input
@@ -95,7 +95,7 @@ require_once '/var/www/src/includes/navbar.php';
             Lưu
         </button>
 
-        <a href="/categories/" class="btn btn-secondary">
+        <a href="/admin/categories/" class="btn btn-secondary">
             Hủy
         </a>
 

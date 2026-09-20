@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require_once '/var/www/src/includes/header.php';
+require_once '/var/www/src/includes/admin/header.php';
 require_once '/var/www/src/includes/navbar.php';
 ?>
 
