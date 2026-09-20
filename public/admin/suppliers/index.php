@@ -34,7 +34,7 @@ require_once '/var/www/src/includes/admin/navbar.php';
 
         <h2>Danh sách nhà cung cấp</h2>
 
-        <a href="/suppliers/create.php" class="btn btn-primary">
+        <a href="/admin/suppliers/create.php" class="btn btn-primary">
             Thêm nhà cung cấp
         </a>
 
@@ -49,6 +49,7 @@ require_once '/var/www/src/includes/admin/navbar.php';
                     <th>ID</th>
                     <th>Tên nhà cung cấp</th>
                     <th>Địa chỉ</th>
+                    <th>Người liên hệ</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
@@ -74,13 +75,17 @@ require_once '/var/www/src/includes/admin/navbar.php';
                         </td>
 
                         <td>
+                            <?= htmlspecialchars($supplier['ContactName'] ?? $supplier['contactName'] ?? '') ?>
+                        </td>
 
-                            <a href="/suppliers/edit.php?id=<?= $supplier['supplierID'] ?? $supplier['SupplierID'] ?>" class="btn btn-sm btn-warning">
+                        <td>
+
+                            <a href="/admin/suppliers/edit.php?id=<?= $supplier['supplierID'] ?? $supplier['SupplierID'] ?>" class="btn btn-sm btn-warning">
                                 Sửa
                             </a>
 
                             <form
-                                action="/suppliers/delete.php"
+                                action="/admin/suppliers/delete.php"
                                 method="post"
                                 class="d-inline"
                                 onsubmit="return confirm('Bạn có chắc muốn xóa nhà cung cấp này?');"

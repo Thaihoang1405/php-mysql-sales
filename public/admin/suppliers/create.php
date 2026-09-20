@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param('sss', $supplierName, $contactName, $address);
 
         if ($stmt->execute()) {
-            header('Location: /suppliers/');
+            header('Location: /admin/suppliers/');
             exit;
         } else {
             $error = 'Không thể thêm nhà cung cấp.';
@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require_once '/var/www/src/includes/header.php';
-require_once '/var/www/src/includes/navbar.php';
+require_once '/var/www/src/includes/admin/header.php';
+require_once '/var/www/src/includes/admin/navbar.php';
 
 ?>
 
@@ -102,7 +102,7 @@ require_once '/var/www/src/includes/navbar.php';
             Lưu
         </button>
 
-        <a href="/suppliers/" class="btn btn-secondary">
+        <a href="/admin/suppliers/" class="btn btn-secondary">
             Hủy
         </a>
 
@@ -112,5 +112,5 @@ require_once '/var/www/src/includes/navbar.php';
 
 <?php
 
-require_once '/var/www/src/includes/footer.php';
+require_once '/var/www/src/includes/admin/footer.php';
 $conn->close();

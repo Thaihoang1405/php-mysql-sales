@@ -42,7 +42,7 @@ require_once '/var/www/src/includes/admin/navbar.php';
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Quản lý sản phẩm</h2>
 
-        <a href="/products/create.php" class="btn btn-primary">
+        <a href="/admin/products/create.php" class="btn btn-primary">
             Thêm sản phẩm
         </a>
     </div>
@@ -72,7 +72,7 @@ require_once '/var/www/src/includes/admin/navbar.php';
 
                 <tr>
                     <td>
-                        <img width="80"  class="img-thumbnail" src = "../uploads/products/<?= htmlspecialchars($product['ImageFile']) ?>" 
+                        <img width="80"  class="img-thumbnail" src = "/uploads/products/<?= htmlspecialchars($product['ImageFile']) ?>" 
                             alt = "<?= htmlspecialchars($product['AltText']) ?>">
                     </td>
                     <td><?= htmlspecialchars($product['ProductCode']) ?></td>
@@ -115,12 +115,12 @@ require_once '/var/www/src/includes/admin/navbar.php';
                     </td>
 
                     <td>
-                        <a href="/products/edit.php?id=<?= $product['ProductID'] ?>" class="btn btn-sm btn-warning">
+                        <a href="/admin/products/edit.php?id=<?= $product['ProductID'] ?>" class="btn btn-sm btn-warning">
                             Sửa
                         </a>
 
                         <form
-    action="/products/delete.php"
+    action="/admin/products/delete.php"
     method="post"
     class="d-inline"
     onsubmit="return confirm('Bạn có chắc muốn xóa danh mục này?');"
