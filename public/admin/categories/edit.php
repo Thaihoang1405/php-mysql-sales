@@ -172,6 +172,6 @@ require_once '/var/www/src/includes/admin/navbar.php';
 
 <?php
 
-require_once '/var/www/src/includes/footer.php';
+require_once '/var/www/src/includes/admin/footer.php';
 
 $conn->close();

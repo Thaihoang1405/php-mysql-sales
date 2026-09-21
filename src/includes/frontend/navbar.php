@@ -3,7 +3,7 @@
     <div class="container">
 
         <a class="navbar-brand" href="/">
-            Sales Management
+            T&T
         </a>
 
         <button
@@ -23,7 +23,7 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link" href="/products.php">
                         Trang chủ
                     </a>
                 </li>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="/admin/">Sales Management</a>
+        <a class="navbar-brand" href="/admin/">T&T</a>
 
         <button
             class="navbar-toggler"
