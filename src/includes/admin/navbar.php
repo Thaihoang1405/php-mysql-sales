@@ -47,6 +47,9 @@
                         Danh mục
                     </a>
                 </li>
+                <a class="nav-link" href="/admin/orders/">
+                     Đơn hàng
+                </a>
 
             </ul>
         </div>
