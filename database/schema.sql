@@ -26,7 +26,8 @@ CREATE TABLE customers (
     Address VARCHAR(200),
     City VARCHAR(100),
     PostalCode VARCHAR(20),
-    Country VARCHAR(100)
+    Country VARCHAR(100),
+    Phone VARCHAR(20)
 ) CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
@@ -85,21 +86,8 @@ CREATE TABLE product_images (
 ) CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE orders (
-    OrderID INT AUTO_INCREMENT PRIMARY KEY,
-    OrderDate DATE NOT NULL,
-    CustomerID INT NOT NULL,
-    EmployeeID INT NOT NULL,
-    ShipperID INT NOT NULL,
-
-    CONSTRAINT fk_orders_customer
-        FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID),
-    CONSTRAINT fk_orders_employee
-        FOREIGN KEY (EmployeeID) REFERENCES employees(EmployeeID),
-    CONSTRAINT fk_orders_shipper
-        FOREIGN KEY (ShipperID) REFERENCES shippers(ShipperID)
-) CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
+ALTER TABLE customers
+ADD COLUMN Phone VARCHAR(20) AFTER Country;
 
 CREATE TABLE orderdetail (
     OrderDetailID INT AUTO_INCREMENT PRIMARY KEY,
